@@ -68,3 +68,53 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+### `Testing the Collaborative Editor`
+Follow these steps to test your collaborative editor with PeerJS:
+
+🔁 Restart Everything
+Stop your React app and PeerJS server if they are already running:
+
+bash
+Copy
+Edit
+Ctrl + C
+Restart the PeerJS server on port 9000:
+
+bash
+Copy
+Edit
+npx peerjs --port 9000
+Start the React app:
+
+bash
+Copy
+Edit
+npm start
+🧪 Test in Two Tabs
+Open the first tab:
+
+Visit: http://localhost:3000
+
+Enter your name to join.
+
+Copy the displayed Peer ID.
+
+Open the second tab (or incognito window):
+
+Visit:
+
+arduino
+Copy
+Edit
+http://localhost:3000?connectTo=<PEER_ID>
+Replace <PEER_ID> with the ID copied from the first tab.
+
+✅ Verify the Following:
+✅ No ID taken error on the console.
+
+✅ Both users appear in the Connected Users list with names.
+
+✅ Typing in one tab instantly updates the text in the other.

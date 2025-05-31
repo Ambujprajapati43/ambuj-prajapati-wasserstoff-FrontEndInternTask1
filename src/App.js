@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import Login from './components/Login';
+import Editor from './components/Editor';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [user, setUser] = useState(null);
+
+  const handleLogin = (userName) => {
+   
+    let userId = localStorage.getItem('userId');
+    if (!userId) {
+      userId = `user-${Math.random().toString(36).substring(2, 10)}`;
+      localStorage.setItem('userId', userId);
+    }
+
+    setUser({ name: userName, id: userId });
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+  };
+
+  if (!user) {
+    return <Login onLogin={handleLogin} />;
+  }
+
+  return <Editor userName={user.name} userId={user.id} onLogout={handleLogout} />;
 }
 
 export default App;
